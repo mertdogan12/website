@@ -8,7 +8,7 @@ interface Props {
 
 const CommandLine = (props: Props) => {
   return (
-    <div>
+    <div className="CommandLine">
       <p>
         {props.name}@{props.computer}
       </p>
