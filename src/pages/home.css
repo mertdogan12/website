@@ -1,0 +1,28 @@
+input.commandLine {
+  width: 91px;
+  height: 25px;
+  position: relative;
+  top: 5px;
+  font-family: Roboto;
+  text-align: left;
+  font-size: 20px;
+  letter-spacing: 0;
+  left: 120px;
+}
+
+span.commandLine {
+  width: 120px;
+  height: 25px;
+  position: relative;
+  left: 5px;
+  top: 5px;
+  text-align: left;
+  font-size: 20px;
+  font-family: Roboto;
+}
+
+div.commandLine {
+  width: 274px;
+  height: 35px;
+  position: absolute;
+}
