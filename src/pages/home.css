@@ -1,28 +1,30 @@
-input.commandLine {
-  width: 91px;
+div.commandLine {
+  background-color: rgba(0, 0, 0, 1);
+  width: 274px;
+  height: 35px;
+  position: absolute;
+}
+span.commandLine {
+  color: rgba(255, 255, 255, 1);
+  width: 125px;
   height: 25px;
-  position: relative;
+  position: absolute;
+  left: 5px;
   top: 5px;
   font-family: Roboto;
   text-align: left;
   font-size: 20px;
   letter-spacing: 0;
-  left: 120px;
 }
-
-span.commandLine {
-  width: 120px;
+input.commandLine {
+  color: rgba(255, 255, 255, 1);
+  width: 91px;
   height: 25px;
-  position: relative;
-  left: 5px;
+  position: absolute;
+  left: 130px;
   top: 5px;
+  font-family: Roboto;
   text-align: left;
   font-size: 20px;
-  font-family: Roboto;
-}
-
-div.commandLine {
-  width: 274px;
-  height: 35px;
-  position: absolute;
+  letter-spacing: 0;
 }
