@@ -1,30 +1,66 @@
+p.home {
+  color: white;
+  margin: 0px 0px 0px 5px;
+
+  font-family: Roboto;
+  text-align: left;
+  font-size: 18px;
+  letter-spacing: 0;
+}
+
+#cmdLine.home {
+  color: lightblue;
+}
+
+#log.home {
+  margin-top: 5px;
+}
+
 div.commandLine {
   background-color: rgba(0, 0, 0, 1);
+
   width: 274px;
   height: 35px;
+
   position: absolute;
 }
+
 span.commandLine {
-  color: rgba(255, 255, 255, 1);
+  color: lightblue;
+
   width: 125px;
   height: 25px;
+
   position: absolute;
   left: 5px;
   top: 5px;
+
   font-family: Roboto;
   text-align: left;
   font-size: 20px;
   letter-spacing: 0;
 }
+
 input.commandLine {
   color: rgba(255, 255, 255, 1);
-  width: 91px;
+  background-color: rgba(0, 0, 0, 1);
+
+  border: none;
+
+  width: calc(100vw - 150px);
   height: 25px;
+
   position: absolute;
-  left: 130px;
+  left: 140px;
   top: 5px;
+
   font-family: Roboto;
   text-align: left;
   font-size: 20px;
   letter-spacing: 0;
+}
+
+textarea.commandLine:focus,
+input.commandLine:focus {
+  outline: none;
 }
