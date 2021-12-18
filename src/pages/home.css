@@ -1,5 +1,8 @@
-p.home {
+p {
   color: white;
+}
+
+p.home {
   margin: 0px 0px 0px 5px;
 
   font-family: Roboto;
@@ -8,12 +11,20 @@ p.home {
   letter-spacing: 0;
 }
 
-#cmdLine.home {
+#cmdLine.home,
+#cmdOut.home {
   color: lightblue;
+
+  font-family: Roboto;
+  text-align: left;
+  font-size: 20px;
+  letter-spacing: 0;
 }
 
-#log.home {
-  margin-top: 5px;
+#cmdOut.home {
+  color: white;
+
+  margin-bottom: 5px;
 }
 
 div.commandLine {
@@ -63,4 +74,22 @@ input.commandLine {
 textarea.commandLine:focus,
 input.commandLine:focus {
   outline: none;
+}
+
+ul.home,
+#socials.home,
+#websiteInfo.home {
+  margin: 5px 0px 5px 0px;
+}
+
+#websiteInfo.home {
+  margin-left: 5px;
+}
+
+a.home {
+  color: #035afc;
+}
+
+li.home {
+  color: white;
 }
