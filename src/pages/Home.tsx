@@ -26,6 +26,24 @@ const Home = () => {
       .then((data) => setJson(data));
   }, []);
 
+  const parseLinks = (input: string) => {
+    const splitString: string[] = input.split(" ");
+
+    return (
+      <span>
+        {splitString.map((value, index) => {
+          if (value.includes("http"))
+            return (
+              <a key={index} href={value}>
+                {value}
+              </a>
+            );
+          else return value + " ";
+        })}
+      </span>
+    );
+  };
+
   const input = (e: KeyboardEvent<HTMLInputElement>): void => {
     if (e.key === "Enter") {
       const target: HTMLInputElement = e.target as HTMLInputElement;
@@ -61,7 +79,7 @@ const Home = () => {
     <div>
       <div>
         <p className="home" id="websiteInfo">
-          {json.websiteInfo}
+          {parseLinks(json.websiteInfo)}
         </p>
         <div className="home" id="socials">
           <p className="home">Socials: </p>
