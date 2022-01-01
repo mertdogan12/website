@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
+import "./info.css";
 
 const Info = () => {
-  const [info, setInfo] = useState("");
+  const [info, setInfo] = useState({});
 
   useEffect(() => {
     console.log("test");
@@ -9,11 +10,15 @@ const Info = () => {
     fetch(
       "https://raw.githubusercontent.com/mertdogan12/mertdogan12/main/info.json"
     )
-      .then((respons) => respons.text())
-      .then((data) => setInfo(JSON.stringify(data, null, "\t")));
+      .then((respons) => respons.json())
+      .then((data) => setInfo(data));
   }, []);
 
-  return <p>{info}</p>;
+  return (
+    <div>
+      <pre className="Info">{JSON.stringify(info, null, 2)}</pre>
+    </div>
+  );
 };
 
 export default Info;
