@@ -28,8 +28,6 @@ p.home {
 }
 
 div.commandLine {
-  background-color: rgba(0, 0, 0, 1);
-
   width: 274px;
   height: 35px;
 
@@ -54,7 +52,7 @@ span.commandLine {
 
 input.commandLine {
   color: rgba(255, 255, 255, 1);
-  background-color: rgba(0, 0, 0, 1);
+  background-color: #141414;
 
   border: none;
 

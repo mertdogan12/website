@@ -34,7 +34,7 @@ const Home = () => {
         {splitString.map((value, index) => {
           if (value.includes("http"))
             return (
-              <a key={index} href={value}>
+              <a className="home" key={index} href={value}>
                 {value}
               </a>
             );
