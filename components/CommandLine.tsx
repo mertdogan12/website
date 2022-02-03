@@ -1,5 +1,5 @@
 import { KeyboardEvent } from "react";
-import "./home.css";
+import styles from "../styles/Home.module.css";
 
 interface Props {
   name: string;
@@ -9,12 +9,12 @@ interface Props {
 
 const CommandLine = (props: Props) => {
   return (
-    <div className="commandLine">
-      <span className="commandLine">
+    <div className={styles.commandLine}>
+      <span className={styles.commandLine}>
         {props.name}@{props.computer} {">"}
       </span>
       <input
-        className="commandLine"
+        className={styles.commandLine}
         type="text"
         id="cmd-input"
         onKeyDown={props.onKeyDown}
