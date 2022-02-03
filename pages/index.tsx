@@ -1,6 +1,7 @@
 import { KeyboardEvent, useEffect, useState } from "react";
 import { ExecuteCommand } from "../bin/Path";
-import CommandLine from "./CommandLine";
+import CommandLine from "../components/CommandLine";
+import styles from "../styles/Home.module.css";
 
 type CommandElement = {
   command: string;
@@ -34,7 +35,7 @@ const Home = () => {
         {splitString.map((value, index) => {
           if (value.includes("http"))
             return (
-              <a className="home" key={index} href={value}>
+              <a className={styles.home} key={index} href={value}>
                 {value}
               </a>
             );
@@ -78,16 +79,16 @@ const Home = () => {
   return (
     <div>
       <div>
-        <p className="home" id="websiteInfo">
+        <p className={styles.home} id="websiteInfo">
           {parseLinks(json.websiteInfo)}
         </p>
-        <div className="home" id="socials">
-          <p className="home">Socials: </p>
-          <ul className="home">
+        <div className={styles.home} id="socials">
+          <p className={styles.home}>Socials: </p>
+          <ul className={styles.home}>
             {json.socials.map((value, index) => {
               return (
-                <li key={index} className="home">
-                  <a className="home" href={value[1]}>
+                <li key={index} className={styles.home}>
+                  <a className={styles.home} href={value[1]}>
                     {value[0]}
                   </a>
                 </li>
@@ -96,14 +97,14 @@ const Home = () => {
           </ul>
         </div>
       </div>
-      <div className="home" id="log">
+      <div className={styles.home} id="log">
         {log.map((value, index) => {
           return (
             <div key={index}>
-              <p className="home" id="cmdLine">
+              <p className={styles.home} id="cmdLine">
                 {userName}@{computerName} {">"} {value.command}
               </p>
-              <p className="home" id="cmdOut">
+              <p className={styles.home} id="cmdOut">
                 {value.output}
               </p>
             </div>
