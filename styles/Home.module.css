@@ -33,7 +33,6 @@ div.commandLine {
 span.commandLine {
   color: lightblue;
 
-  width: 125px;
   height: 25px;
 
   position: absolute;
@@ -54,7 +53,7 @@ input.commandLine {
   width: calc(100vw - 150px);
 
   position: absolute;
-  left: 135px;
+  left: 125px;
 
   font-family: Roboto;
   text-align: left;
@@ -71,6 +70,7 @@ ul.home,
 #socials.home,
 #websiteInfo.home {
   margin: 5px 0px 5px 0px;
+  list-style-type: none;
 }
 
 #websiteInfo.home {
