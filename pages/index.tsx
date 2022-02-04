@@ -20,9 +20,7 @@ const Home = () => {
   let computerName: string = "NaN";
 
   useEffect(() => {
-    fetch(
-      "https://raw.githubusercontent.com/mertdogan12/mertdogan12/main/info.json"
-    )
+    fetch("https://github.mert.nrw/mertdogan12/info.json")
       .then((respons) => respons.json())
       .then((data) => setJson(data));
   }, []);
