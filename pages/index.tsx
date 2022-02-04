@@ -88,6 +88,7 @@ const Home = () => {
             {json.socials.map((value, index) => {
               return (
                 <li key={index} className={styles.home}>
+                  <span>- </span>
                   <a className={styles.home} href={value[1]}>
                     {value[0]}
                   </a>

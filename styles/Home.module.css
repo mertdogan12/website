@@ -1,9 +1,10 @@
 p.home {
   margin: 0px 0px 0px 5px;
+  color: lightblue;
 
   font-family: Roboto;
   text-align: left;
-  font-size: 18px;
+  font-size: 20px;
   letter-spacing: 0;
 }
 
@@ -25,7 +26,6 @@ p.home {
 
 div.commandLine {
   width: 274px;
-  height: 35px;
 
   position: absolute;
 }
@@ -33,12 +33,10 @@ div.commandLine {
 span.commandLine {
   color: lightblue;
 
-  width: 125px;
   height: 25px;
 
   position: absolute;
   left: 5px;
-  top: 5px;
 
   font-family: Roboto;
   text-align: left;
@@ -53,11 +51,9 @@ input.commandLine {
   border: none;
 
   width: calc(100vw - 150px);
-  height: 25px;
 
   position: absolute;
-  left: 140px;
-  top: 5px;
+  left: 125px;
 
   font-family: Roboto;
   text-align: left;
@@ -74,6 +70,7 @@ ul.home,
 #socials.home,
 #websiteInfo.home {
   margin: 5px 0px 5px 0px;
+  list-style-type: none;
 }
 
 #websiteInfo.home {
