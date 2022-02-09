@@ -6,6 +6,8 @@ p.home {
   text-align: left;
   font-size: 20px;
   letter-spacing: 0;
+
+  white-space: pre-line;
 }
 
 #cmdLine.home,
