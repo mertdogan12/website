@@ -1,7 +1,9 @@
 import CommandInterface from "./CommandInterface";
 import EchoCommand from "./EchoCommand";
+import GotoCommand from "./GoToCommand";
+import HelpCommand from "./HelpCommand";
 
-const Path: CommandInterface[] = [EchoCommand];
+const Path: CommandInterface[] = [EchoCommand, GotoCommand, HelpCommand];
 
 const ExecuteCommand = (
   command: string,
