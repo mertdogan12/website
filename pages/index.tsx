@@ -63,7 +63,7 @@ const Home = () => {
 
             if (output === undefined) output = "Command not found: " + input[0];
 
-            command.command = input[0];
+            command.command = input.join(" ");
             command.output = output;
 
             setLog([...log, command]);
