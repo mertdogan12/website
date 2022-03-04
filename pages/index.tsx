@@ -75,12 +75,12 @@ const Home = () => {
   };
 
   return (
-    <div>
+    <div className={styles.home} id={styles.home}>
       <div>
-        <p className={styles.home} id="websiteInfo">
+        <p className={styles.home} id={styles.websiteInfo}>
           {parseLinks(json.websiteInfo)}
         </p>
-        <div className={styles.home} id="socials">
+        <div className={styles.home} id={styles.socials}>
           <p className={styles.home}>Socials: </p>
           <ul className={styles.home}>
             {json.socials.map((value, index) => {
@@ -96,14 +96,14 @@ const Home = () => {
           </ul>
         </div>
       </div>
-      <div className={styles.home} id="log">
+      <div className={styles.home} id={styles.log}>
         {log.map((value, index) => {
           return (
             <div key={index}>
-              <p className={styles.home} id="cmdLine">
+              <p className={styles.home} id={styles.cmdLine}>
                 {userName}@{computerName} {">"} {value.command}
               </p>
-              <p className={styles.home} id="cmdOut">
+              <p className={styles.home} id={styles.cmdOut}>
                 {value.output}
               </p>
             </div>
