@@ -2,6 +2,7 @@ import { KeyboardEvent, useEffect, useState } from "react";
 import { ExecuteCommand } from "../bin/Path";
 import CommandLine from "../components/CommandLine";
 import styles from "../styles/Home.module.css";
+import retroEffect from "../styles/RetroEffect.module.css";
 
 type CommandElement = {
   command: string;
@@ -75,8 +76,8 @@ const Home = () => {
   };
 
   return (
-    <div className={styles.home} id={styles.home}>
-      <div>
+    <div>
+      <div className={retroEffect.retroEffect}>
         <p className={styles.home} id={styles.websiteInfo}>
           {parseLinks(json.websiteInfo)}
         </p>
