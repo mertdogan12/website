@@ -1,4 +1,5 @@
 import { KeyboardEvent, useEffect, useState } from "react";
+import { setEnvironmentData } from "worker_threads";
 import { ExecuteCommand } from "../bin/Path";
 import CommandLine from "../components/CommandLine";
 import styles from "../styles/Home.module.css";
@@ -9,6 +10,7 @@ type CommandElement = {
   output: string;
 };
 
+// TODO Change
 type Json = {
   socials: string[][];
   websiteInfo: string;
@@ -17,6 +19,7 @@ type Json = {
 const Home = () => {
   const [log, setLog] = useState<CommandElement[]>([]);
   const [json, setJson] = useState<Json>({ socials: [[""]], websiteInfo: "" });
+  const [effect, setEffect] = useState(retroEffect);
   let userName: string = "guest";
   let computerName: string = "NaN";
 
@@ -77,7 +80,7 @@ const Home = () => {
 
   return (
     <div>
-      <div className={retroEffect.retroEffect}>
+      <div className={effect.effect}>
         <p className={styles.home} id={styles.websiteInfo}>
           {parseLinks(json.websiteInfo)}
         </p>
