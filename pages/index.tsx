@@ -3,7 +3,7 @@ import { setEnvironmentData } from "worker_threads";
 import { ExecuteCommand } from "../bin/Path";
 import CommandLine from "../components/CommandLine";
 import styles from "../styles/Home.module.css";
-import retroEffect from "../styles/RetroEffect.module.css";
+import "../effects/RetroEffect.css";
 
 type CommandElement = {
   command: string;
@@ -19,7 +19,7 @@ type Json = {
 const Home = () => {
   const [log, setLog] = useState<CommandElement[]>([]);
   const [json, setJson] = useState<Json>({ socials: [[""]], websiteInfo: "" });
-  const [effect, setEffect] = useState(retroEffect);
+  // const [effect, setEffect] = useState(retroEffect);
   let userName: string = "guest";
   let computerName: string = "NaN";
 
@@ -80,7 +80,7 @@ const Home = () => {
 
   return (
     <div>
-      <div className={effect.effect}>
+      <div id="effectMain" className="retroEffect">
         <p className={styles.home} id={styles.websiteInfo}>
           {parseLinks(json.websiteInfo)}
         </p>

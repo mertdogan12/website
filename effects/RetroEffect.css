@@ -1,6 +1,6 @@
 /* Retro monitor effect */
 /* Credits: http://aleclownes.com/2017/02/01/crt-display.html */
-.effect::before {
+.retroEffect::before {
   content: " ";
   display: block;
   position: absolute;
@@ -20,7 +20,7 @@
   pointer-events: none;
 }
 
-.effect::after {
+.retroEffect::after {
   content: " ";
   display: block;
   position: absolute;
@@ -35,7 +35,7 @@
   animation: flicker 0.15s infinite;
 }
 
-.effect {
+.retroEffect {
   animation: textShadow 1.6s infinite;
 }
 
