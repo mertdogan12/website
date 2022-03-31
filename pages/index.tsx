@@ -3,7 +3,6 @@ import { setEnvironmentData } from "worker_threads";
 import { ExecuteCommand } from "../bin/Path";
 import CommandLine from "../components/CommandLine";
 import styles from "../styles/Home.module.css";
-import "../effects/RetroEffect.css";
 
 type CommandElement = {
   command: string;
