@@ -1,8 +1,8 @@
 import { KeyboardEvent, useEffect, useState } from "react";
-import { setEnvironmentData } from "worker_threads";
 import { ExecuteCommand } from "../bin/Path";
 import CommandLine from "../components/CommandLine";
 import styles from "../styles/Home.module.css";
+import { getCookie } from "../lib/Cookies";
 
 type CommandElement = {
   command: string;
@@ -10,15 +10,15 @@ type CommandElement = {
 };
 
 // TODO Change
-type Json = {
+interface Json {
   socials: string[][];
   websiteInfo: string;
-};
+}
 
 const Home = () => {
   const [log, setLog] = useState<CommandElement[]>([]);
   const [json, setJson] = useState<Json>({ socials: [[""]], websiteInfo: "" });
-  // const [effect, setEffect] = useState(retroEffect);
+  const [effect, setEffect] = useState("retro");
   let userName: string = "guest";
   let computerName: string = "NaN";
 
@@ -26,6 +26,12 @@ const Home = () => {
     fetch("https://github.mert.nrw/mertdogan12/info.json")
       .then((respons) => respons.json())
       .then((data) => setJson(data));
+  }, []);
+
+  useEffect(() => {
+    const effect: string = getCookie("effect");
+
+    if (effect !== "") setEffect(effect);
   }, []);
 
   const parseLinks = (input: string) => {
@@ -79,7 +85,7 @@ const Home = () => {
 
   return (
     <div>
-      <div id="effectMain" className="retroEffect">
+      <div id="effectMain" className={`${effect}Effect`}>
         <p className={styles.home} id={styles.websiteInfo}>
           {parseLinks(json.websiteInfo)}
         </p>
