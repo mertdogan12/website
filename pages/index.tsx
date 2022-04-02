@@ -13,25 +13,33 @@ type CommandElement = {
 interface Json {
   socials: string[][];
   websiteInfo: string;
+  defaultEffect: string;
 }
 
 const Home = () => {
   const [log, setLog] = useState<CommandElement[]>([]);
-  const [json, setJson] = useState<Json>({ socials: [[""]], websiteInfo: "" });
+  const [json, setJson] = useState<Json>({
+    socials: [[""]],
+    websiteInfo: "",
+    defaultEffect: "retro",
+  });
   const [effect, setEffect] = useState("retro");
   let userName: string = "guest";
   let computerName: string = "NaN";
 
   useEffect(() => {
-    fetch("https://github.mert.nrw/mertdogan12/info.json")
-      .then((respons) => respons.json())
-      .then((data) => setJson(data));
-  }, []);
-
-  useEffect(() => {
     const effect: string = getCookie("effect");
 
     if (effect !== "") setEffect(effect);
+
+    fetch("https://github.mert.nrw/mertdogan12/info.json")
+      .then((respons) => respons.json())
+      .then((data) => {
+        setJson(data);
+
+        if (effect === "") setEffect(json.defaultEffect);
+        console.log(json.defaultEffect);
+      });
   }, []);
 
   const parseLinks = (input: string) => {
