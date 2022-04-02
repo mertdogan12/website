@@ -18,6 +18,7 @@ interface Social {
 interface Json {
   socials: Social[];
   websiteInfo: string;
+  defaultEffect: string;
 }
 
 const Home = () => {
@@ -25,7 +26,9 @@ const Home = () => {
   const [json, setJson] = useState<Json>({
     socials: [{ name: "", link: "", icon: "" }],
     websiteInfo: "",
+    defaultEffect: "retro",
   });
+  const [effect, setEffect] = useState("retro");
   let userName: string = "guest";
   let computerName: string = "NaN";
 
