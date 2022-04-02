@@ -1,4 +1,5 @@
 import CommandInterface from "./CommandInterface";
+import { setCookie } from "../lib/Cookies";
 
 const EchoCommand: CommandInterface = {
   command: "effect",
@@ -9,7 +10,10 @@ const EchoCommand: CommandInterface = {
     if (effectMain == null)
       return "Error: div with id 'effectMain' does not exist";
 
-    effectMain.className = input[0].toLowerCase() + "Effect";
+    const effect: string = input[0].toLowerCase();
+    effectMain.className = `${effect}Effect`;
+
+    setCookie("effect", effect, 30);
 
     return "Effect: " + input[0];
   },
