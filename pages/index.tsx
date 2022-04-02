@@ -38,7 +38,6 @@ const Home = () => {
         setJson(data);
 
         if (effect === "") setEffect(json.defaultEffect);
-        console.log(json.defaultEffect);
       });
   }, []);
 
