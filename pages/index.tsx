@@ -48,10 +48,10 @@ const Home = () => {
     return (
       <span>
         {splitString.map((value, index) => {
-          if (value.includes("http"))
+          if (value.includes("://"))
             return (
               <a className={styles.home} key={index} href={value}>
-                {value}
+                {value.slice(value.search("://") + 3, value.length)}
               </a>
             );
           else return value + " ";
