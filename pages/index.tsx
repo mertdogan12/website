@@ -9,9 +9,14 @@ type CommandElement = {
   output: string;
 };
 
-// TODO Change
+interface Social {
+  name: string;
+  link: string;
+  icon: string;
+}
+
 interface Json {
-  socials: string[][];
+  socials: Social[];
   websiteInfo: string;
   defaultEffect: string;
 }
@@ -19,7 +24,7 @@ interface Json {
 const Home = () => {
   const [log, setLog] = useState<CommandElement[]>([]);
   const [json, setJson] = useState<Json>({
-    socials: [[""]],
+    socials: [{ name: "", link: "", icon: "" }],
     websiteInfo: "",
     defaultEffect: "retro",
   });
@@ -103,8 +108,8 @@ const Home = () => {
               return (
                 <li key={index} className={styles.home}>
                   <span>- </span>
-                  <a className={styles.home} href={value[1]}>
-                    {value[0]}
+                  <a className={styles.home} href={value.link}>
+                    {value.name}
                   </a>
                 </li>
               );
