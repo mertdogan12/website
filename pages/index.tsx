@@ -8,14 +8,23 @@ type CommandElement = {
   output: string;
 };
 
-type Json = {
-  socials: string[][];
+interface Social {
+  name: string;
+  link: string;
+  icon: string;
+}
+
+interface Json {
+  socials: Social[];
   websiteInfo: string;
-};
+}
 
 const Home = () => {
   const [log, setLog] = useState<CommandElement[]>([]);
-  const [json, setJson] = useState<Json>({ socials: [[""]], websiteInfo: "" });
+  const [json, setJson] = useState<Json>({
+    socials: [{ name: "", link: "", icon: "" }],
+    websiteInfo: "",
+  });
   let userName: string = "guest";
   let computerName: string = "NaN";
 
@@ -87,8 +96,8 @@ const Home = () => {
               return (
                 <li key={index} className={styles.home}>
                   <span>- </span>
-                  <a className={styles.home} href={value[1]}>
-                    {value[0]}
+                  <a className={styles.home} href={value.link}>
+                    {value.name}
                   </a>
                 </li>
               );
