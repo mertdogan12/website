@@ -2,8 +2,14 @@ import CommandInterface from "./CommandInterface";
 import EchoCommand from "./EchoCommand";
 import GotoCommand from "./GoToCommand";
 import HelpCommand from "./HelpCommand";
+import EffectCommand from "./EffectCommand";
 
-const Path: CommandInterface[] = [EchoCommand, GotoCommand, HelpCommand];
+const Path: CommandInterface[] = [
+  EchoCommand,
+  GotoCommand,
+  HelpCommand,
+  EffectCommand,
+];
 
 const ExecuteCommand = (
   command: string,
