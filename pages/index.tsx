@@ -2,27 +2,43 @@ import { KeyboardEvent, useEffect, useState } from "react";
 import { ExecuteCommand } from "../bin/Path";
 import CommandLine from "../components/CommandLine";
 import styles from "../styles/Home.module.css";
+import { getCookie } from "../lib/Cookies";
 
 type CommandElement = {
   command: string;
   output: string;
 };
 
-type Json = {
+// TODO Change
+interface Json {
   socials: string[][];
   websiteInfo: string;
-};
+  defaultEffect: string;
+}
 
 const Home = () => {
   const [log, setLog] = useState<CommandElement[]>([]);
-  const [json, setJson] = useState<Json>({ socials: [[""]], websiteInfo: "" });
+  const [json, setJson] = useState<Json>({
+    socials: [[""]],
+    websiteInfo: "",
+    defaultEffect: "retro",
+  });
+  const [effect, setEffect] = useState("retro");
   let userName: string = "guest";
   let computerName: string = "NaN";
 
   useEffect(() => {
+    const effect: string = getCookie("effect");
+
+    if (effect !== "") setEffect(effect);
+
     fetch("https://github.mert.nrw/mertdogan12/info.json")
       .then((respons) => respons.json())
-      .then((data) => setJson(data));
+      .then((data) => {
+        setJson(data);
+
+        if (effect === "") setEffect(json.defaultEffect);
+      });
   }, []);
 
   const parseLinks = (input: string) => {
@@ -31,10 +47,10 @@ const Home = () => {
     return (
       <span>
         {splitString.map((value, index) => {
-          if (value.includes("http"))
+          if (value.includes("://"))
             return (
               <a className={styles.home} key={index} href={value}>
-                {value}
+                {value.slice(value.search("://") + 3, value.length)}
               </a>
             );
           else return value + " ";
@@ -76,11 +92,11 @@ const Home = () => {
 
   return (
     <div>
-      <div>
-        <p className={styles.home} id="websiteInfo">
+      <div id="effectMain" className={`${effect}Effect`}>
+        <p className={styles.home} id={styles.websiteInfo}>
           {parseLinks(json.websiteInfo)}
         </p>
-        <div className={styles.home} id="socials">
+        <div className={styles.home} id={styles.socials}>
           <p className={styles.home}>Socials: </p>
           <ul className={styles.home}>
             {json.socials.map((value, index) => {
@@ -96,14 +112,14 @@ const Home = () => {
           </ul>
         </div>
       </div>
-      <div className={styles.home} id="log">
+      <div className={styles.home} id={styles.log}>
         {log.map((value, index) => {
           return (
             <div key={index}>
-              <p className={styles.home} id="cmdLine">
+              <p className={styles.home} id={styles.cmdLine}>
                 {userName}@{computerName} {">"} {value.command}
               </p>
-              <p className={styles.home} id="cmdOut">
+              <p className={styles.home} id={styles.cmdOut}>
                 {value.output}
               </p>
             </div>
