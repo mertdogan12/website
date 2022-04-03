@@ -3,11 +3,12 @@ import { ExecuteCommand } from "../bin/Path";
 import CommandLine from "../components/CommandLine";
 import styles from "../styles/Home.module.css";
 import { getCookie } from "../lib/Cookies";
+import { ParseLinks } from "../lib/Helper";
 
-type CommandElement = {
+interface CommandElement {
   command: string;
   output: string;
-};
+}
 
 interface Social {
   name: string;
@@ -46,24 +47,6 @@ const Home = () => {
       });
   }, []);
 
-  const parseLinks = (input: string) => {
-    const splitString: string[] = input.split(" ");
-
-    return (
-      <span>
-        {splitString.map((value, index) => {
-          if (value.includes("://"))
-            return (
-              <a className={styles.home} key={index} href={value}>
-                {value.slice(value.search("://") + 3, value.length)}
-              </a>
-            );
-          else return value + " ";
-        })}
-      </span>
-    );
-  };
-
   const input = (e: KeyboardEvent<HTMLInputElement>): void => {
     if (e.key === "Enter") {
       const target: HTMLInputElement = e.target as HTMLInputElement;
@@ -99,7 +82,7 @@ const Home = () => {
     <div>
       <div id="effectMain" className={`${effect}Effect`}>
         <p className={styles.home} id={styles.websiteInfo}>
-          {parseLinks(json.websiteInfo)}
+          {ParseLinks(json.websiteInfo, styles.home)}
         </p>
         <div className={styles.home} id={styles.socials}>
           <p className={styles.home}>Socials: </p>
