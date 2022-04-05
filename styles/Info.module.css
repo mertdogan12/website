@@ -61,6 +61,8 @@ div.socialElementIcon {
   border-radius: 6px;
 
   float: left;
+  
+  object-fit: cover;
 }
 
 @media (max-width: 991px) {
