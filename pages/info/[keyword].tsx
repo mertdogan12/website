@@ -1,30 +1,22 @@
 import { useEffect, useState } from "react";
-import styles from "../styles/Info.module.css";
-
-interface Social {
-  name: string;
-  link: string;
-  icon: string;
-}
-
-interface Json {
-  socials: Social[];
-  websiteInfo: string;
-  defaultEffect: string;
-}
+import styles from "../../styles/Info.module.css";
+import { Socials, Social, FetchSocials } from "../../lib/Socials";
+import { useRouter } from "next/router";
 
 const Info = () => {
-  const [json, setJson] = useState<Json>({
-    socials: [{ name: "", link: "", icon: "" }],
-    websiteInfo: "",
-    defaultEffect: "retro",
-  });
+  const [socials, setSocials] = useState<Social[]>([
+    { name: "", link: "", icon: "" },
+  ]);
+  const router = useRouter();
+  const { keyword } = router.query;
 
   useEffect(() => {
-    fetch("https://github.mert.nrw/mertdogan12/info.json")
-      .then((respons) => respons.json())
-      .then((data) => setJson(data));
-  }, []);
+    FetchSocials().then((value: Socials) => {
+      value.socials.forEach((value) => {
+        if (value.keyword === keyword) setSocials(value.socials);
+      });
+    });
+  }, [keyword]);
 
   const Icon = (props: { iconUrl: string }) => {
     if (props.iconUrl === "")
@@ -35,7 +27,7 @@ const Info = () => {
 
   return (
     <div className={styles.socials}>
-      {json.socials.map((value, index) => {
+      {socials.map((value, index) => {
         return (
           <div
             className={styles.socialElement}
