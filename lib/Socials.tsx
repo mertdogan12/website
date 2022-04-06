@@ -5,7 +5,10 @@ interface Social {
 }
 
 interface Socials {
-  socials: Social[];
+  socials: {
+    keyword: string;
+    socials: Social[];
+  }[];
   websiteInfo: string;
   defaultEffect: string;
 }
