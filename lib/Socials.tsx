@@ -10,7 +10,11 @@ interface Socials {
   defaultEffect: string;
 }
 
-const FetchSocials = async () => {};
+const FetchSocials = async (): Promise<Socials> => {
+  return await (
+    await fetch("https://github.mert.nrw/mertdogan12/info.json")
+  ).json();
+};
 
 export { FetchSocials };
 export type { Social, Socials };

@@ -4,27 +4,16 @@ import CommandLine from "../components/CommandLine";
 import styles from "../styles/Home.module.css";
 import { getCookie } from "../lib/Cookies";
 import { ParseLinks } from "../lib/Helper";
+import { FetchSocials, Social, Socials } from "../lib/Socials";
 
 interface CommandElement {
   command: string;
   output: string;
 }
 
-interface Social {
-  name: string;
-  link: string;
-  icon: string;
-}
-
-interface Json {
-  socials: Social[];
-  websiteInfo: string;
-  defaultEffect: string;
-}
-
 const Home = () => {
   const [log, setLog] = useState<CommandElement[]>([]);
-  const [json, setJson] = useState<Json>({
+  const [json, setJson] = useState<Socials>({
     socials: [{ name: "", link: "", icon: "" }],
     websiteInfo: "",
     defaultEffect: "retro",
@@ -36,15 +25,10 @@ const Home = () => {
   useEffect(() => {
     const effect: string = getCookie("effect");
 
-    if (effect !== "") setEffect(effect);
-
-    fetch("https://github.mert.nrw/mertdogan12/info.json")
-      .then((respons) => respons.json())
-      .then((data) => {
-        setJson(data);
-
-        if (effect === "") setEffect(json.defaultEffect);
-      });
+    async () => {
+      if (effect !== "") setEffect(effect);
+      else setJson(await FetchSocials());
+    };
   }, []);
 
   const input = (e: KeyboardEvent<HTMLInputElement>): void => {
