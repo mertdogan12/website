@@ -13,7 +13,11 @@ const Info = () => {
   useEffect(() => {
     FetchSocials().then((value: Socials) => {
       value.socials.forEach((value) => {
-        if (value.keyword === keyword) setSocials(value.socials);
+        console.log(keyword);
+
+        if (keyword !== undefined) {
+          if (value.keyword === keyword) setSocials(value.socials);
+        } else if (value.keyword === "default") setSocials(value.socials);
       });
     });
   }, [keyword]);

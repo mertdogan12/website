@@ -1,3 +1,0 @@
-{
-  "rewrites": [{ "source": "/info/:keyword", "destination": "/info/" }]
-}
