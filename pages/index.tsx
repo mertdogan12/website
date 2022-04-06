@@ -4,31 +4,19 @@ import CommandLine from "../components/CommandLine";
 import styles from "../styles/Home.module.css";
 import { getCookie } from "../lib/Cookies";
 import { ParseLinks } from "../lib/Helper";
+import { FetchSocials, Social } from "../lib/Socials";
 
 interface CommandElement {
   command: string;
   output: string;
 }
 
-interface Social {
-  name: string;
-  link: string;
-  icon: string;
-}
-
-interface Json {
-  socials: Social[];
-  websiteInfo: string;
-  defaultEffect: string;
-}
-
 const Home = () => {
   const [log, setLog] = useState<CommandElement[]>([]);
-  const [json, setJson] = useState<Json>({
-    socials: [{ name: "", link: "", icon: "" }],
-    websiteInfo: "",
-    defaultEffect: "retro",
-  });
+  const [socials, setSocials] = useState<Social[]>([
+    { name: "", link: "", icon: "" },
+  ]);
+  const [websiteInfo, setWebsiteInfo] = useState("");
   const [effect, setEffect] = useState("retro");
   let userName: string = "guest";
   let computerName: string = "NaN";
@@ -36,15 +24,16 @@ const Home = () => {
   useEffect(() => {
     const effect: string = getCookie("effect");
 
-    if (effect !== "") setEffect(effect);
+    FetchSocials().then((value) => {
+      setWebsiteInfo(value.websiteInfo);
 
-    fetch("https://github.mert.nrw/mertdogan12/info.json")
-      .then((respons) => respons.json())
-      .then((data) => {
-        setJson(data);
+      if (effect !== "") setEffect(effect);
+      else setEffect(value.defaultEffect);
 
-        if (effect === "") setEffect(json.defaultEffect);
+      value.socials.forEach((value) => {
+        if (value.keyword === "default") setSocials(value.socials);
       });
+    });
   }, []);
 
   const input = (e: KeyboardEvent<HTMLInputElement>): void => {
@@ -82,12 +71,12 @@ const Home = () => {
     <div>
       <div id="effectMain" className={`${effect}Effect`}>
         <p className={styles.home} id={styles.websiteInfo}>
-          {ParseLinks(json.websiteInfo, styles.home)}
+          {ParseLinks(websiteInfo, styles.home)}
         </p>
         <div className={styles.home} id={styles.socials}>
           <p className={styles.home}>Socials: </p>
           <ul className={styles.home}>
-            {json.socials.map((value, index) => {
+            {socials.map((value, index) => {
               return (
                 <li key={index} className={styles.home}>
                   <span>- </span>
