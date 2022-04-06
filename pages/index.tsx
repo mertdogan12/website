@@ -4,7 +4,7 @@ import CommandLine from "../components/CommandLine";
 import styles from "../styles/Home.module.css";
 import { getCookie } from "../lib/Cookies";
 import { ParseLinks } from "../lib/Helper";
-import { FetchSocials, Social, Socials } from "../lib/Socials";
+import { FetchSocials, Social } from "../lib/Socials";
 
 interface CommandElement {
   command: string;
@@ -13,11 +13,10 @@ interface CommandElement {
 
 const Home = () => {
   const [log, setLog] = useState<CommandElement[]>([]);
-  const [json, setJson] = useState<Socials>({
-    socials: [{ name: "", link: "", icon: "" }],
-    websiteInfo: "",
-    defaultEffect: "retro",
-  });
+  const [socials, setSocials] = useState<Social[]>([
+    { name: "", link: "", icon: "" },
+  ]);
+  const [websiteInfo, setWebsiteInfo] = useState("");
   const [effect, setEffect] = useState("retro");
   let userName: string = "guest";
   let computerName: string = "NaN";
@@ -25,10 +24,16 @@ const Home = () => {
   useEffect(() => {
     const effect: string = getCookie("effect");
 
-    async () => {
+    FetchSocials().then((value) => {
+      setWebsiteInfo(value.websiteInfo);
+
       if (effect !== "") setEffect(effect);
-      else setJson(await FetchSocials());
-    };
+      else setEffect(value.defaultEffect);
+
+      value.socials.forEach((value) => {
+        if (value.keyword === "default") setSocials(value.socials);
+      });
+    });
   }, []);
 
   const input = (e: KeyboardEvent<HTMLInputElement>): void => {
@@ -66,12 +71,12 @@ const Home = () => {
     <div>
       <div id="effectMain" className={`${effect}Effect`}>
         <p className={styles.home} id={styles.websiteInfo}>
-          {ParseLinks(json.websiteInfo, styles.home)}
+          {ParseLinks(websiteInfo, styles.home)}
         </p>
         <div className={styles.home} id={styles.socials}>
           <p className={styles.home}>Socials: </p>
           <ul className={styles.home}>
-            {json.socials.map((value, index) => {
+            {socials.map((value, index) => {
               return (
                 <li key={index} className={styles.home}>
                   <span>- </span>
